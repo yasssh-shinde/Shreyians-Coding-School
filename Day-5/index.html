@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete JavaScript Course - GeeksforGeeks Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .navbar {
+            background: #1f1f1f;
+            color: white;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar h1 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .article {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #1f1f1f;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        h2 {
+            color: #1f1f1f;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-left: 4px solid #4CAF50;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #4CAF50;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .highlight-box.warning {
+            background: #fff3cd;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.error {
+            background: #f8d7da;
+            border-left-color: #f44336;
+        }
+
+        .highlight-box.success {
+            background: #d4edda;
+            border-left-color: #4CAF50;
+        }
+
+        .code-section {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .code-block code {
+            display: block;
+            white-space: pre;
+        }
+
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .number { color: #b5cea8; }
+        .function { color: #dcdcaa; }
+        .comment { color: #6a9955; }
+
+        .table-section {
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        thead {
+            background: #4CAF50;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .demo-section {
+            background: #f0f7ff;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .demo-title {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-family: inherit;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .output {
+            background: #1e1e1e;
+            color: #4CAF50;
+            padding: 15px;
+            border-radius: 3px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .example-box {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+
+        .example-title {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .syntax-highlight {
+            background: #fffacd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d2691e;
+        }
+
+        .list-item {
+            margin: 8px 0;
+            padding-left: 30px;
+        }
+
+        .list-item::before {
+            content: "▶";
+            color: #4CAF50;
+            margin-left: -20px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background: white;
+            border-bottom-color: #4CAF50;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .breadcrumb {
+            background: #f5f5f5;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+        }
+
+        .breadcrumb a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            background: #1f1f1f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .toc {
+            background: #f0f7ff;
+            border: 1px solid #4CAF50;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .toc h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            padding: 5px 0;
+            padding-left: 20px;
+        }
+
+        .toc li:before {
+            content: "▸ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .toc a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        /* Demo-specific styles */
+        .demo-output {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>📚 Complete JavaScript Course</h1>
+    </div>
+
+    <div class="container">
+        <!-- Table of Contents -->
+        <div class="article">
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#part1">Part 1: Basics of JavaScript</a></li>
+                    <li><a href="#part2">Part 2: Functions in JavaScript</a></li>
+                    <li><a href="#part3">Part 3: Arrays and Objects</a></li>
+                    <li><a href="#part4">Part 4: DOM Manipulation</a></li>
+                    <li><a href="#part5">Part 5: Event Handling</a></li>
+                    <li><a href="#part6">Part 6: Browser APIs & Storage</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PART 1 -->
+        <div class="article" id="part1">
+            <h1>Part 1: Basics of JavaScript</h1>
+
+            <h2>1.1 Variables & Hoisting</h2>
+            <p>Variables are containers for storing data values. JavaScript has three ways to declare variables: <span class="syntax-highlight">var</span>, <span class="syntax-highlight">let</span>, and <span class="syntax-highlight">const</span>.</p>
+
+            <h3>Understanding Variable Hoisting</h3>
+            <p><strong>Hoisting</strong> is JavaScript's behavior of moving declarations to the top of their scope before code execution. This is important to understand:</p>
+
+            <div class="highlight-box">
+                <strong>📌 Key Concept:</strong> Variable and function declarations are "hoisted" (moved to the top), but not their assignments/initializations.
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">📌 Example: var Hoisting</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="comment">// This works! (var is hoisted)</span>
+<span class="keyword">console</span>.log(x); <span class="comment">// undefined</span>
+<span class="keyword">var</span> x = <span class="number">5</span>;
+<span class="keyword">console</span>.log(x); <span class="comment">// 5</span></code></div>
+                </div>
+                <p><strong>What happens internally:</strong></p>
+                <div class="code-section">
+                    <div class="code-header">Actual Execution</div>
+                    <div class="code-block"><code><span class="keyword">var</span> x; <span class="comment">// Hoisted and initialized as undefined</span>
+<span class="keyword">console</span>.log(x); <span class="comment">// undefined</span>
+x = <span class="number">5</span>;
+<span class="keyword">console</span>.log(x); <span class="comment">// 5</span></code></div>
+                </div>
+            </div>
+
+            <h3>var vs let vs const</h3>
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>var</th>
+                            <th>let</th>
+                            <th>const</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Scope</strong></td>
+                            <td>Function-scoped</td>
+                            <td>Block-scoped</td>
+                            <td>Block-scoped</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Re-declare</strong></td>
+                            <td>✅ Yes</td>
+                            <td>❌ No</td>
+                            <td>❌ No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Update</strong></td>
+                            <td>✅ Yes</td>
+                            <td>✅ Yes</td>
+                            <td>❌ No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hoisting</strong></td>
+                            <td>Initialize as undefined</td>
+                            <td>Temporal Dead Zone</td>
+                            <td>Temporal Dead Zone</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Demo -->
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try It Yourself</div>
+                <button onclick="demoVariableHoisting()">Show Variable Hoisting</button>
+                <button onclick="demoVariableScope()">Show Variable Scope</button>
+                <div id="varOutput" class="output"></div>
+            </div>
+
+            <h2>1.2 Data Types</h2>
+            <p>JavaScript has <strong>7 primitive data types</strong> and <strong>1 composite type</strong> (Object):</p>
+
+            <div class="list-item"><strong>String:</strong> Text data - <span class="syntax-highlight">"Hello"</span></div>
+            <div class="list-item"><strong>Number:</strong> Any number - <span class="syntax-highlight">42, 3.14, -5</span></div>
+            <div class="list-item"><strong>Boolean:</strong> true or false</div>
+            <div class="list-item"><strong>Undefined:</strong> Variable declared but not assigned</div>
+            <div class="list-item"><strong>Null:</strong> Intentional absence of value</div>
+            <div class="list-item"><strong>Symbol:</strong> Unique identifier - <span class="syntax-highlight">Symbol('id')</span></div>
+            <div class="list-item"><strong>BigInt:</strong> Very large integers - <span class="syntax-highlight">123456789n</span></div>
+            <div class="list-item"><strong>Object:</strong> Collection of key-value pairs</div>
+
+            <!-- Demo -->
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try It Yourself</div>
+                <input type="text" id="typeInput" placeholder="Enter any value...">
+                <button onclick="demoTypeCheck()">Check Type</button>
+                <button onclick="demoTypeConversion()">Show Conversions</button>
+                <div id="typeOutput" class="output"></div>
+            </div>
+
+            <h2>1.3 Operators</h2>
+            <p>JavaScript supports various types of operators for performing operations on values.</p>
+
+            <!-- Demo -->
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try It Yourself</div>
+                <button onclick="demoOperators()">Arithmetic Operators</button>
+                <button onclick="demoComparison()">Comparison Operators</button>
+                <button onclick="demoLogical()">Logical Operators</button>
+                <div id="operatorOutput" class="output"></div>
+            </div>
+
+            <h2>1.4 Conditionals & Loops</h2>
+
+            <!-- Demo -->
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try It Yourself</div>
+                <input type="number" id="gradeInput" placeholder="Enter score (0-100)">
+                <button onclick="demoIfElse()">Check Grade</button>
+                <button onclick="demoLoops()">Show Loops</button>
+                <div id="loopOutput" class="output"></div>
+            </div>
+        </div>
+
+        <!-- PART 2 -->
+        <div class="article" id="part2">
+            <h1>Part 2: Functions in JavaScript</h1>
+
+            <h2>2.1 Understanding Functions</h2>
+            <p>Functions are reusable blocks of code designed to perform a particular task. They accept input (parameters), process it, and optionally return output.</p>
+
+            <h3>Function Parameters & Arguments</h3>
+            <p><strong>Parameters:</strong> Variables in function definition</p>
+            <p><strong>Arguments:</strong> Actual values passed when calling the function</p>
+
+            <h3>Function Types</h3>
+            <div class="example-box">
+                <div class="example-title">📌 Example: Function Declaration vs Expression</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="comment">// Function Declaration (Hoisted)</span>
+<span class="keyword">function</span> <span class="function">add</span>(a, b) {
+    <span class="keyword">return</span> a + b;
+}
+
+<span class="comment">// Function Expression (Not Hoisted)</span>
+<span class="keyword">const</span> subtract = <span class="keyword">function</span>(a, b) {
+    <span class="keyword">return</span> a - b;
+};
+
+<span class="keyword">console</span>.log(<span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 8</span>
+<span class="keyword">console</span>.log(<span class="function">subtract</span>(<span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 2</span></code></div>
+                </div>
+            </div>
+
+            <h3>Arrow Functions</h3>
+            <p>Modern syntax introduced in ES6. Has lexical <span class="syntax-highlight">this</span> binding (doesn't have its own this).</p>
+
+            <div class="example-box">
+                <div class="example-title">📌 Example: Arrow Functions</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="comment">// Basic arrow function</span>
+<span class="keyword">const</span> multiply = (a, b) => a * b;
+<span class="keyword">console</span>.log(<span class="function">multiply</span>(<span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 15</span>
+
+<span class="comment">// Single parameter (parentheses optional)</span>
+<span class="keyword">const</span> square = x => x * x;
+<span class="keyword">console</span>.log(<span class="function">square</span>(<span class="number">4</span>)); <span class="comment">// 16</span></code></div>
+                </div>
+            </div>
+
+            <!-- Demo -->
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try It Yourself</div>
+                <button onclick="demoFunctionTypes()">Function Types</button>
+                <button onclick="demoClosures()">Show Closures</button>
+                <button onclick="demoHigherOrder()">Higher Order Functions</button>
+                <div id="functionOutput" class="output"></div>
+            </div>
+        </div>
+
+        <!-- PART 3 -->
+        <div class="article" id="part3">
+            <h1>Part 3: Arrays and Objects</h1>
+
+            <h2>3.1 Arrays in JavaScript</h2>
+            <p>Arrays are ordered collections of values. Each element is accessed by index (starting from 0).</p>
+
+            <h3>Array Methods</h3>
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>push()</strong></td>
+                            <td>Add to end</td>
+                            <td><span class="syntax-highlight">arr.push(6)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>pop()</strong></td>
+                            <td>Remove from end</td>
+                            <td><span class="syntax-highlight">arr.pop()</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>shift()</strong></td>
+                            <td>Remove from start</td>
+                            <td><span class="syntax-highlight">arr.shift()</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>unshift()</strong></td>
+                            <td>Add to start</td>
+                            <td><span class="syntax-highlight">arr.unshift(0)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>slice()</strong></td>
+                            <td>Extract subarray</td>
+                            <td><span class="syntax-highlight">arr.slice(1, 3)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>splice()</strong></td>
+                            <td>Add/remove at index</td>
+                            <td><span class="syntax-highlight">arr.splice(2, 1, 'x')</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>map()</strong></td>
+                            <td>Transform elements</td>
+                            <td><span class="syntax-highlight">arr.map(x => x*2)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>filter()</strong></td>
+                            <td>Select elements</td>
+                            <td><span class="syntax-highlight">arr.filter(x => x>2)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>reduce()</strong></td>
+                            <td>Combine into single value</td>
+                            <td><span class="syntax-highlight">arr.reduce((a,b) => a+b)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Demo -->
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try It Yourself</div>
+                <button onclick="demoArrayMethods()">Array Methods</button>
+                <button onclick="demoArrayIteration()">Array Iteration</button>
+                <button onclick="demoObjects()">Object Methods</button>
+                <div id="arrayOutput" class="output"></div>
+            </div>
+
+            <h2>3.2 Objects in JavaScript</h2>
+            <p>Objects are key-value pairs used to store related data and functionality.</p>
+
+            <h3>Object Methods</h3>
+            <div class="example-box">
+                <div class="example-title">📌 Example: Object Methods</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="keyword">const</span> person = { name: <span class="string">"Alice"</span>, age: <span class="number">25</span> };
+
+<span class="comment">// Object.keys() - get all keys</span>
+<span class="keyword">console</span>.log(Object.keys(person)); <span class="comment">// ["name", "age"]</span>
+
+<span class="comment">// Object.values() - get all values</span>
+<span class="keyword">console</span>.log(Object.values(person)); <span class="comment">// ["Alice", 25]</span>
+
+<span class="comment">// Object.entries() - get [key, value] pairs</span>
+<span class="keyword">console</span>.log(Object.entries(person)); <span class="comment">// [["name", "Alice"], ["age", 25]]</span>
+
+<span class="comment">// Object.freeze() - prevent all changes</span>
+Object.freeze(person);
+
+<span class="comment">// Object.seal() - prevent add/delete</span>
+Object.seal(person);</code></div>
+                </div>
+            </div>
+
+            <h3>Cloning Objects (Shallow & Deep)</h3>
+            <div class="example-box">
+                <div class="example-title">📌 Example: Object Cloning</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="keyword">const</span> original = { name: <span class="string">"Alice"</span>, skills: [<span class="string">"JS"</span>, <span class="string">"React"</span>] };
+
+<span class="comment">// Shallow clone (spread operator)</span>
+<span class="keyword">const</span> shallowClone = { ...original };
+shallowClone.name = <span class="string">"Bob"</span>; <span class="comment">// Doesn't affect original</span>
+shallowClone.skills.push(<span class="string">"Node"</span>); <span class="comment">// DOES affect original!</span>
+
+<span class="comment">// Deep clone (JSON method)</span>
+<span class="keyword">const</span> deepClone = JSON.parse(JSON.stringify(original));
+deepClone.skills.push(<span class="string">"Python"</span>); <span class="comment">// Doesn't affect original</span></code></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 4 -->
+        <div class="article" id="part4">
+            <h1>Part 4: DOM Manipulation</h1>
+
+            <h2>4.1 Introduction to DOM</h2>
+            <p><strong>DOM (Document Object Model)</strong> is a tree representation of HTML elements in JavaScript. It allows you to access and manipulate web page content.</p>
+
+            <h2>4.2 Selecting DOM Elements</h2>
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Description</th>
+                            <th>Returns</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="syntax-highlight">getElementById()</span></td>
+                            <td>Select by ID</td>
+                            <td>Single element</td>
+                        </tr>
+                        <tr>
+                            <td><span class="syntax-highlight">querySelector()</span></td>
+                            <td>CSS selector (first)</td>
+                            <td>Single element</td>
+                        </tr>
+                        <tr>
+                            <td><span class="syntax-highlight">querySelectorAll()</span></td>
+                            <td>CSS selector (all)</td>
+                            <td>NodeList</td>
+                        </tr>
+                        <tr>
+                            <td><span class="syntax-highlight">getElementsByClassName()</span></td>
+                            <td>Select by class</td>
+                            <td>HTMLCollection</td>
+                        </tr>
+                        <tr>
+                            <td><span class="syntax-highlight">getElementsByTagName()</span></td>
+                            <td>Select by tag</td>
+                            <td>HTMLCollection</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Demo -->
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try It Yourself</div>
+                <button onclick="demoDOMSelection()">DOM Selection</button>
+                <button onclick="demoDOMManipulation()">DOM Manipulation</button>
+                <button onclick="demoEventHandling()">Event Handling</button>
+                <div id="domOutput" class="output"></div>
+            </div>
+        </div>
+
+        <!-- PART 5 -->
+        <div class="article" id="part5">
+            <h1>Part 5: Event Handling</h1>
+
+            <h2>5.1 Event Listeners</h2>
+            <p>Events are user interactions like clicks, key presses, form submissions, etc.</p>
+
+            <div class="example-box">
+                <div class="example-title">📌 Example: Adding Event Listeners</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="keyword">const</span> button = document.getElementById(<span class="string">"myButton"</span>);
+
+<span class="comment">// Method 1: addEventListener</span>
+button.addEventListener(<span class="string">"click"</span>, () => {
+    <span class="keyword">console</span>.log(<span class="string">"Clicked!"</span>);
+});
+
+<span class="comment">// Method 2: onclick property</span>
+button.onclick = () => {
+    <span class="keyword">console</span>.log(<span class="string">"Clicked!"</span>);
+};</code></div>
+                </div>
+            </div>
+
+            <h2>5.2 Common Events</h2>
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>click</strong></td>
+                            <td>Mouse button clicked</td>
+                        </tr>
+                        <tr>
+                            <td><strong>dblclick</strong></td>
+                            <td>Mouse button double-clicked</td>
+                        </tr>
+                        <tr>
+                            <td><strong>mouseover</strong></td>
+                            <td>Mouse moved over element</td>
+                        </tr>
+                        <tr>
+                            <td><strong>mouseout</strong></td>
+                            <td>Mouse moved out of element</td>
+                        </tr>
+                        <tr>
+                            <td><strong>keydown</strong></td>
+                            <td>Key pressed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>keyup</strong></td>
+                            <td>Key released</td>
+                        </tr>
+                        <tr>
+                            <td><strong>input</strong></td>
+                            <td>User entered text</td>
+                        </tr>
+                        <tr>
+                            <td><strong>change</strong></td>
+                            <td>Form value changed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>submit</strong></td>
+                            <td>Form submitted</td>
+                        </tr>
+                        <tr>
+                            <td><strong>focus</strong></td>
+                            <td>Element focused</td>
+                        </tr>
+                        <tr>
+                            <td><strong>blur</strong></td>
+                            <td>Element lost focus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>scroll</strong></td>
+                            <td>Page scrolled</td>
+                        </tr>
+                        <tr>
+                            <td><strong>resize</strong></td>
+                            <td>Window resized</td>
+                        </tr>
+                        <tr>
+                            <td><strong>load</strong></td>
+                            <td>Page finished loading</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DOMContentLoaded</strong></td>
+                            <td>DOM fully loaded</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PART 6 -->
+        <div class="article" id="part6">
+            <h1>Part 6: Browser APIs & Storage</h1>
+
+            <h2>6.1 Browser Object Model (BOM)</h2>
+            <p>The Browser Object Model provides objects for interacting with the browser.</p>
+
+            <h3>Window Object</h3>
+            <div class="example-box">
+                <div class="example-title">📌 Example: Window Object</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="comment">// Window methods</span>
+window.alert(<span class="string">"Alert Message"</span>);
+window.confirm(<span class="string">"Confirm?"</span>); <span class="comment">// true/false</span>
+window.prompt(<span class="string">"Enter name:"</span>, <span class="string">"default"</span>); <span class="comment">// Returns input</span>
+
+<span class="comment">// Window properties</span>
+<span class="keyword">console</span>.log(window.innerWidth); <span class="comment">// Viewport width</span>
+<span class="keyword">console</span>.log(window.innerHeight); <span class="comment">// Viewport height</span>
+<span class="keyword">console</span>.log(window.location); <span class="comment">// Current URL</span>
+<span class="keyword">console</span>.log(window.history); <span class="comment">// Browsing history</span></code></div>
+                </div>
+            </div>
+
+            <h2>6.2 Local Storage & Session Storage</h2>
+            <p><strong>LocalStorage:</strong> Persists indefinitely (no expiry)</p>
+            <p><strong>SessionStorage:</strong> Cleared when browser tab closes</p>
+
+            <div class="example-box">
+                <div class="example-title">📌 Example: LocalStorage</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="comment">// Store data</span>
+localStorage.setItem(<span class="string">"username"</span>, <span class="string">"Alice"</span>);
+
+<span class="comment">// Retrieve data</span>
+<span class="keyword">const</span> username = localStorage.getItem(<span class="string">"username"</span>);
+
+<span class="comment">// Store objects</span>
+<span class="keyword">const</span> user = { name: <span class="string">"Alice"</span>, age: <span class="number">25</span> };
+localStorage.setItem(<span class="string">"user"</span>, JSON.stringify(user));
+
+<span class="comment">// Retrieve objects</span>
+<span class="keyword">const</span> retrievedUser = JSON.parse(localStorage.getItem(<span class="string">"user"</span>));
+
+<span class="comment">// Remove specific item</span>
+localStorage.removeItem(<span class="string">"username"</span>);
+
+<span class="comment">// Clear all</span>
+localStorage.clear();</code></div>
+                </div>
+            </div>
+
+            <h2>6.3 Timing Events (setTimeout & setInterval)</h2>
+            <p>Schedule code execution after a delay or at regular intervals.</p>
+
+            <div class="example-box">
+                <div class="example-title">📌 Example: setTimeout</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="comment">// Execute after 2 seconds</span>
+<span class="keyword">const</span> timeoutId = setTimeout(() => {
+    <span class="keyword">console</span>.log(<span class="string">"Executed after 2 seconds"</span>);
+}, <span class="number">2000</span>);
+
+<span class="comment">// Cancel timeout</span>
+clearTimeout(timeoutId);</code></div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">📌 Example: setInterval</div>
+                <div class="code-section">
+                    <div class="code-header">JavaScript</div>
+                    <div class="code-block"><code><span class="comment">// Execute every 1 second</span>
+<span class="keyword">let</span> count = <span class="number">0</span>;
+<span class="keyword">const</span> intervalId = setInterval(() => {
+    count++;
+    <span class="keyword">console</span>.log(<span class="string">"Count:"</span>, count);
+    
+    <span class="comment">// Stop after 5 times</span>
+    <span class="keyword">if</span> (count === <span class="number">5</span>) {
+        clearInterval(intervalId);
+    }
+}, <span class="number">1000</span>);</code></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Created with ❤️ by Yash Shinde</p>
+        </footer>
+    </div>
+
+    <script>
+        // Part 1: Variables Demo
+        function demoVariableHoisting() {
+            const output = document.getElementById('varOutput');
+            output.textContent = '';
+            
+            // Hoisting example
+            output.textContent += "// Variable Hoisting Example\n";
+            output.textContent += "console.log(x); // undefined (var is hoisted)\n";
+            output.textContent += "var x = 5;\n";
+            output.textContent += "console.log(x); // 5\n\n";
+            
+            // Actual execution
+            output.textContent += "// What happens internally:\n";
+            output.textContent += "var x; // Hoisted and initialized as undefined\n";
+            output.textContent += "console.log(x); // undefined\n";
+            output.textContent += "x = 5;\n";
+            output.textContent += "console.log(x); // 5\n";
+        }
+
+        function demoVariableScope() {
+            const output = document.getElementById('varOutput');
+            output.textContent = '';
+            
+            output.textContent += "// Function Scope (var)\n";
+            output.textContent += "function testVar() {\n";
+            output.textContent += "  var x = 1;\n";
+            output.textContent += "  if (true) {\n";
+            output.textContent += "    var x = 2; // Same variable!\n";
+            output.textContent += "    console.log(x); // 2\n";
+            output.textContent += "  }\n";
+            output.textContent += "  console.log(x); // 2 (not 1!)\n";
+            output.textContent += "}\n\n";
+            
+            output.textContent += "// Block Scope (let/const)\n";
+            output.textContent += "function testLet() {\n";
+            output.textContent += "  let x = 1;\n";
+            output.textContent += "  if (true) {\n";
+            output.textContent += "    let x = 2; // Different variable!\n";
+            output.textContent += "    console.log(x); // 2\n";
+            output.textContent += "  }\n";
+            output.textContent += "  console.log(x); // 1\n";
+            output.textContent += "}\n";
+        }
+
+        // Part 1: Data Types Demo
+        function demoTypeCheck() {
+            const input = document.getElementById('typeInput').value;
+            const output = document.getElementById('typeOutput');
+            
+            if (input === '') {
+                output.textContent = 'Please enter a value';
+                return;
+            }
+            
+            output.textContent = `Input: "${input}"\n`;
+            output.textContent += `Type: ${typeof input}\n`;
+            output.textContent += `Is Number: ${!isNaN(input) && input.trim() !== ''}\n`;
+            output.textContent += `Is String: ${typeof input === 'string'}\n`;
+            output.textContent += `Is Boolean: ${input === 'true' || input === 'false'}\n`;
+            output.textContent += `Is Object: ${input === '{}' || input === '[]'}\n`;
+            output.textContent += `Is Null: ${input === 'null'}\n`;
+            output.textContent += `Is Undefined: ${input === 'undefined'}`;
+        }
+
+        function demoTypeConversion() {
+            const output = document.getElementById('typeOutput');
+            output.textContent = '// Type Conversion Examples\n\n';
+            
+            // String conversion
+            output.textContent += '// String conversion\n';
+            output.textContent += `String(42): ${String(42)}\n`;
+            output.textContent += `(42).toString(): ${(42).toString()}\n\n`;
+            
+            // Number conversion
+            output.textContent += '// Number conversion\n';
+            output.textContent += `Number("42"): ${Number("42")}\n`;
+            output.textContent += `Number("3.14"): ${Number("3.14")}\n`;
+            output.textContent += `Number(""): ${Number("")}\n\n`;
+            
+            // Boolean conversion
+            output.textContent += '// Boolean conversion\n';
+            output.textContent += `Boolean(1): ${Boolean(1)}\n`;
+            output.textContent += `Boolean(0): ${Boolean(0)}\n`;
+            output.textContent += `Boolean(""): ${Boolean("")}\n`;
+            output.textContent += `Boolean("text"): ${Boolean("text")}\n`;
+        }
+
+        // Part 1: Operators Demo
+        function demoOperators() {
+            const output = document.getElementById('operatorOutput');
+            output.textContent = '// Arithmetic Operators\n\n';
+            
+            output.textContent += `5 + 3 = ${5 + 3}\n`;
+            output.textContent += `5 - 3 = ${5 - 3}\n`;
+            output.textContent += `5 * 3 = ${5 * 3}\n`;
+            output.textContent += `5 / 2 = ${5 / 2}\n`;
+            output.textContent += `5 % 2 = ${5 % 2}\n`;
+            output.textContent += `5 ** 2 = ${5 ** 2}\n\n`;
+            
+            output.textContent += '// Increment & Decrement\n';
+            output.textContent += 'let x = 10;\n';
+            output.textContent += 'x++; // 11\n';
+            output.textContent += '++x; // 12\n';
+        }
+
+        function demoComparison() {
+            const output = document.getElementById('operatorOutput');
+            output.textContent = '// Comparison Operators\n\n';
+            
+            output.textContent += `5 > 3: ${5 > 3}\n`;
+            output.textContent += `5 < 3: ${5 < 3}\n`;
+            output.textContent += `5 >= 5: ${5 >= 5}\n`;
+            output.textContent += `5 <= 4: ${5 <= 4}\n`;
+            output.textContent += `5 == "5": ${5 == "5"}\n`;
+            output.textContent += `5 === "5": ${5 === "5"}\n`;
+            output.textContent += `5 != "5": ${5 != "5"}\n`;
+            output.textContent += `5 !== "5": ${5 !== "5"}\n`;
+        }
+
+        function demoLogical() {
+            const output = document.getElementById('operatorOutput');
+            output.textContent = '// Logical Operators\n\n';
+            
+            output.textContent += '// AND (&&)\n';
+            output.textContent += `true && false: ${true && false}\n`;
+            output.textContent += `true && true: ${true && true}\n\n`;
+            
+            output.textContent += '// OR (||)\n';
+            output.textContent += `true || false: ${true || false}\n`;
+            output.textContent += `false || false: ${false || false}\n\n`;
+            
+            output.textContent += '// NOT (!)\n';
+            output.textContent += `!true: ${!true}\n`;
+            output.textContent += `!false: ${!false}\n\n`;
+            
+            output.textContent += '// Nullish Coalescing (??)\n';
+            output.textContent += `const value = null ?? "default": ${null ?? "default"}\n`;
+        }
+
+        // Part 1: Conditionals & Loops Demo
+        function demoIfElse() {
+            const input = document.getElementById('gradeInput').value;
+            const output = document.getElementById('loopOutput');
+            
+            if (input === '') {
+                output.textContent = 'Please enter a score';
+                return;
+            }
+            
+            const score = parseInt(input);
+            let grade = '';
+            
+            if (score >= 90) grade = 'A';
+            else if (score >= 80) grade = 'B';
+            else if (score >= 70) grade = 'C';
+            else if (score >= 60) grade = 'D';
+            else grade = 'F';
+            
+            output.textContent = `Score: ${score}\nGrade: ${grade}`;
+        }
+
+        function demoLoops() {
+            const output = document.getElementById('loopOutput');
+            output.textContent = '// Loop Examples\n\n';
+            
+            output.textContent += '// for loop\n';
+            output.textContent += 'for (let i = 0; i < 5; i++) {\n';
+            output.textContent += '  console.log(i);\n';
+            output.textContent += '}\n\n';
+            
+            output.textContent += '// while loop\n';
+            output.textContent += 'let count = 0;\n';
+            output.textContent += 'while (count < 5) {\n';
+            output.textContent += '  console.log(count);\n';
+            output.textContent += '  count++;\n';
+            output.textContent += '}\n\n';
+            
+            output.textContent += '// for...of (arrays)\n';
+            output.textContent += 'const arr = ["a", "b", "c"];\n';
+            output.textContent += 'for (const item of arr) {\n';
+            output.textContent += '  console.log(item);\n';
+            output.textContent += '}\n\n';
+            
+            output.textContent += '// for...in (objects)\n';
+            output.textContent += 'const obj = {name: "Alice", age: 25};\n';
+            output.textContent += 'for (const key in obj) {\n';
+            output.textContent += '  console.log(key, obj[key]);\n';
+            output.textContent += '}\n';
+        }
+
+        // Part 2: Functions Demo
+        function demoFunctionTypes() {
+            const output = document.getElementById('functionOutput');
+            output.textContent = '// Function Types\n\n';
+            
+            output.textContent += '// Function Declaration (Hoisted)\n';
+            output.textContent += 'function add(a, b) {\n';
+            output.textContent += '  return a + b;\n';
+            output.textContent += '}\n\n';
+            
+            output.textContent += '// Function Expression (Not Hoisted)\n';
+            output.textContent += 'const subtract = function(a, b) {\n';
+            output.textContent += '  return a - b;\n';
+            output.textContent += '};\n\n';
+            
+            output.textContent += '// Arrow Function\n';
+            output.textContent += 'const multiply = (a, b) => a * b;\n\n';
+            
+            output.textContent += '// Results:\n';
+            output.textContent += `add(5, 3): ${add(5, 3)}\n`;
+            output.textContent += `subtract(5, 3): ${subtract(5, 3)}\n`;
+            output.textContent += `multiply(5, 3): ${multiply(5, 3)}`;
+        }
+
+        function demoClosures() {
+            const output = document.getElementById('functionOutput');
+            output.textContent = '// Closure Example\n\n';
+            
+            output.textContent += 'function counter() {\n';
+            output.textContent += '  let count = 0;\n';
+            output.textContent += '  \n';
+            output.textContent += '  return function() {\n';
+            output.textContent += '    count++;\n';
+            output.textContent += '    return count;\n';
+            output.textContent += '  };\n';
+            output.textContent += '}\n\n';
+            
+            output.textContent += 'const c = counter();\n';
+            output.textContent += 'console.log(c()); // 1\n';
+            output.textContent += 'console.log(c()); // 2\n';
+            output.textContent += 'console.log(c()); // 3\n\n';
+            
+            output.textContent += '// Actual execution:\n';
+            output.textContent += `c(): ${counter()()}\n`;
+            output.textContent += `c(): ${counter()()}\n`;
+            output.textContent += `c(): ${counter()()}`;
+        }
+
+        function demoHigherOrder() {
+            const output = document.getElementById('functionOutput');
+            output.textContent = '// Higher Order Function Example\n\n';
+            
+            output.textContent += 'function createMultiplier(factor) {\n';
+            output.textContent += '  return function(num) {\n';
+            output.textContent += '    return num * factor;\n';
+            output.textContent += '  };\n';
+            output.textContent += '}\n\n';
+            
+            output.textContent += 'const double = createMultiplier(2);\n';
+            output.textContent += 'const triple = createMultiplier(3);\n\n';
+            
+            output.textContent += '// Results:\n';
+            output.textContent += `double(5): ${createMultiplier(2)(5)}\n`;
+            output.textContent += `triple(5): ${createMultiplier(3)(5)}`;
+        }
+
+        // Part 3: Arrays Demo
+        function demoArrayMethods() {
+            const output = document.getElementById('arrayOutput');
+            output.textContent = '// Array Methods Demo\n\n';
+            
+            output.textContent += '// Original array\n';
+            output.textContent += 'const arr = [1, 2, 3, 4, 5];\n\n';
+            
+            output.textContent += '// push() - Add to end\n';
+            output.textContent += `arr.push(6): [${[...arr, 6].join(', ')}]\n\n`;
+            
+            output.textContent += '// pop() - Remove from end\n';
+            output.textContent += `arr.pop(): [${arr.slice(0, -1).join(', ')}]\n\n`;
+            
+            output.textContent += '// shift() - Remove from start\n';
+            output.textContent += `arr.shift(): [${arr.slice(1).join(', ')}]\n\n`;
+            
+            output.textContent += '// unshift() - Add to start\n';
+            output.textContent += `arr.unshift(0): [${[0, ...arr].join(', ')}]\n\n`;
+            
+            output.textContent += '// slice() - Extract subarray\n';
+            output.textContent += `arr.slice(1, 3): [${arr.slice(1, 3).join(', ')}]\n\n`;
+            
+            output.textContent += '// splice() - Add/remove at index\n';
+            output.textContent += `arr.splice(2, 1, 'x'): [${[...arr.slice(0, 2), 'x', ...arr.slice(3)].join(', ')}]`;
+        }
+
+        function demoArrayIteration() {
+            const output = document.getElementById('arrayOutput');
+            output.textContent = '// Array Iteration Methods\n\n';
+            
+            output.textContent += '// Original array\n';
+            output.textContent += 'const numbers = [1, 2, 3, 4, 5];\n\n';
+            
+            output.textContent += '// map() - Transform elements\n';
+            output.textContent += `numbers.map(x => x * 2): [${numbers.map(x => x * 2).join(', ')}]\n\n`;
+            
+            output.textContent += '// filter() - Select elements\n';
+            output.textContent += `numbers.filter(x => x > 2): [${numbers.filter(x => x > 2).join(', ')}]\n\n`;
+            
+            output.textContent += '// reduce() - Combine into single value\n';
+            output.textContent += `numbers.reduce((a, b) => a + b, 0): ${numbers.reduce((a, b) => a + b, 0)}\n\n`;
+            
+            output.textContent += '// find() - First matching element\n';
+            output.textContent += `numbers.find(x => x > 3): ${numbers.find(x => x > 3)}\n\n`;
+            
+            output.textContent += '// some() - Any match?\n';
+            output.textContent += `numbers.some(x => x % 2 === 0): ${numbers.some(x => x % 2 === 0)}\n\n`;
+            
+            output.textContent += '// every() - All match?\n';
+            output.textContent += `numbers.every(x => x > 0): ${numbers.every(x => x > 0)}`;
+        }
+
+        function demoObjects() {
+            const output = document.getElementById('arrayOutput');
+            output.textContent = '// Object Methods Demo\n\n';
+            
+            output.textContent += '// Original object\n';
+            output.textContent += 'const person = { name: "Alice", age: 25 };\n\n';
+            
+            output.textContent += '// Object.keys() - Get all keys\n';
+            output.textContent += `Object.keys(person): [${Object.keys(person).join(', ')}]\n\n`;
+            
+            output.textContent += '// Object.values() - Get all values\n';
+            output.textContent += `Object.values(person): [${Object.values(person).join(', ')}]\n\n`;
+            
+            output.textContent += '// Object.entries() - Get [key, value] pairs\n';
+            output.textContent += `Object.entries(person): [${Object.entries(person).map(e => `["${e[0]}", "${e[1]}"]`).join(', ')}]\n\n`;
+            
+            output.textContent += '// Object.freeze() - Prevent all changes\n';
+            output.textContent += 'Object.freeze(person);\n';
+            output.textContent += 'person.name = "Bob"; // Will not work\n\n';
+            
+            output.textContent += '// Object.seal() - Prevent add/delete\n';
+            output.textContent += 'Object.seal(person);\n';
+            output.textContent += 'person.age = 26; // Will work\n';
+            output.textContent += 'delete person.name; // Will not work';
+        }
+
+        // Part 4: DOM Demo
+        function demoDOMSelection() {
+            const output = document.getElementById('domOutput');
+            output.textContent = '// DOM Selection Methods\n\n';
+            
+            output.textContent += '// By ID\n';
+            output.textContent += 'const elem = document.getElementById("myId");\n\n';
+            
+            output.textContent += '// By CSS selector\n';
+            output.textContent += 'const elem1 = document.querySelector(".class");\n';
+            output.textContent += 'const elem2 = document.querySelector("#id");\n';
+            output.textContent += 'const elem3 = document.querySelector("div > p");\n\n';
+            
+            output.textContent += '// Multiple elements\n';
+            output.textContent += 'const allItems = document.querySelectorAll(".item");\n';
+            output.textContent += 'const allDivs = document.getElementsByTagName("div");\n\n';
+            
+            output.textContent += '// Current document info\n';
+            output.textContent += `document.title: "${document.title}"\n`;
+            output.textContent += `document.URL: "${document.URL}"\n`;
+            output.textContent += `document.documentElement: ${document.documentElement.tagName}\n`;
+        }
+
+        function demoDOMManipulation() {
+            const output = document.getElementById('domOutput');
+            output.textContent = '// DOM Manipulation Methods\n\n';
+            
+            output.textContent += '// Content manipulation\n';
+            output.textContent += 'elem.innerHTML = "<strong>Bold Text</strong>";\n';
+            output.textContent += 'elem.textContent = "Plain Text";\n\n';
+            
+            output.textContent += '// Attribute manipulation\n';
+            output.textContent += 'elem.setAttribute("href", "https://example.com");\n';
+            output.textContent += 'elem.getAttribute("href");\n';
+            output.textContent += 'elem.removeAttribute("target");\n';
+            output.textContent += 'elem.hasAttribute("href");\n\n';
+            
+            output.textContent += '// Style manipulation\n';
+            output.textContent += 'elem.style.color = "red";\n';
+            output.textContent += 'elem.style.backgroundColor = "blue";\n';
+            output.textContent += 'elem.style.fontSize = "20px";\n\n';
+            
+            output.textContent += '// Class manipulation\n';
+            output.textContent += 'elem.classList.add("active");\n';
+            output.textContent += 'elem.classList.remove("active");\n';
+            output.textContent += 'elem.classList.toggle("active");\n';
+            output.textContent += 'elem.classList.contains("active");\n';
+        }
+
+        function demoEventHandling() {
+            const output = document.getElementById('domOutput');
+            output.textContent = '// Event Handling Methods\n\n';
+            
+            output.textContent += '// Adding event listeners\n';
+            output.textContent += 'button.addEventListener("click", () => {\n';
+            output.textContent += '  console.log("Clicked!");\n';
+            output.textContent += '});\n\n';
+            
+            output.textContent += '// Event object\n';
+            output.textContent += 'element.addEventListener("click", (event) => {\n';
+            output.textContent += '  console.log(event.type);     // "click"\n';
+            output.textContent += '  console.log(event.target);    // Element clicked\n';
+            output.textContent += '  console.log(event.clientX);   // Mouse X position\n';
+            output.textContent += '  console.log(event.clientY);   // Mouse Y position\n';
+            output.textContent += '});\n\n';
+            
+            output.textContent += '// Prevent default behavior\n';
+            output.textContent += 'form.addEventListener("submit", (e) => {\n';
+            output.textContent += '  e.preventDefault(); // Stops form submission\n';
+            output.textContent += '});\n\n';
+            
+            output.textContent += '// Stop event bubbling\n';
+            output.textContent += 'button.addEventListener("click", (e) => {\n';
+            output.textContent += '  e.stopPropagation(); // Stops bubbling\n';
+            output.textContent += '});\n';
+        }
+
+        // Add some sample elements for DOM demos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create sample elements for DOM demos
+            const sampleDiv = document.createElement('div');
+            sampleDiv.id = 'sampleDiv';
+            sampleDiv.className = 'sample-class';
+            sampleDiv.textContent = 'This is a sample element for DOM demos';
+            sampleDiv.style.padding = '10px';
+            sampleDiv.style.margin = '10px 0';
+            sampleDiv.style.border = '1px solid #ccc';
+            
+            document.querySelector('#part4 .demo-section').appendChild(sampleDiv);
+            
+            // Add event listener for demo
+            sampleDiv.addEventListener('click', function() {
+                this.style.backgroundColor = '#f0f7ff';
+                this.textContent = 'Clicked! Element changed.';
+            });
+        });
+    </script>
+</body>
+</html>
